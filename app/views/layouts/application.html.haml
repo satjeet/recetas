@@ -11,9 +11,14 @@
 		.container
 			.navbar-brand= link_to "Caja de Recetas", root_path
 
+		- if user_signed_in?
 			%ul.nav.navbar-nav.navbar-right
 				%li= link_to "Nueva Receta", new_recipe_path
-				%li= link_to "Desconectarse", root_path
+				%li= link_to "Desconectarse", destroy_user_session_path, method: :delete
+		- else 
+			%ul.nav.navbar-nav.navbar-right
+				%li= link_to "Registrate", new_user_registration_path
+				%li= link_to "Inicia Secion", new_user_session_path
 
 	.containe
 		-flash.each do|name,msg|
